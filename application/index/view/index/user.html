@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游客聊天页面</title>
+    <link rel="stylesheet" href="/static/common/dist/css/soho.min.css">
+</head>
+<body>
+
+<!-- layout -->
+<div class="layout">
+
+    <!-- content -->
+    <div class="content">
+
+        <!-- chat -->
+        <div class="chat">
+            <div class="chat-header">
+                <div class="chat-header-user">
+                    <figure class="avatar avatar-lg">
+                        <img src="/static/common/images/kefu.jpg" class="rounded-circle">
+                    </figure>
+                    <div id="kefu_name">
+                        <h5>请等待连接客服....</h5>
+                    </div>
+                </div>
+
+            </div>
+            <div class="chat-body">
+                <div class="messages">
+                    <!-- .no-message -->
+
+
+                </div>
+            </div>
+            <div class="chat-footer">
+                <form action="">
+                    <input type="text" class="form-control" placeholder="请输入内容" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="form-buttons">
+                        <button class="btn btn-primary btn-floating" type="submit">
+                            <i class="fa fa-send"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var uid= '{$uid}';
+    var uname= '{$name}';
+    var uavatar= '{$avatar}';
+    var code= '{$code}';
+    var port= '{$port}';
+</script>
+
+<script src="/static/demo/js/jquery.min.js"></script>
+<script src="/static/common/vendor/popper.min.js"></script>
+<script src="/static/common/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/static/common/vendor/jquery.nicescroll.min.js"></script>
+<script src="/static/common/dist/js/soho.min.js"></script>
+<script src="/static/common/dist/js/user.js"></script>
+</body>
+</html>

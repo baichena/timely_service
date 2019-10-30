@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timely客服登陆</title>
+    <link rel="stylesheet" href="/static/common/dist/css/soho.min.css">
+</head>
+<body class="form-membership">
+
+<div class="form-wrapper">
+    <h5>Timely客服登陆</h5>
+    <form action="{:url('login/Logining')}" method="post">
+        <div class="form-group input-group-lg">
+            <input type="text" name="name" class="form-control" placeholder="输入一个名称,名称已有会要求密码" required autofocus>
+        </div>
+        <div class="form-group input-group-lg">
+            <input type="password" name="password" class="form-control" placeholder="请自行保存密码,下次登陆" required>
+        </div>
+        <div class="form-group d-flex justify-content-between">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked="" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">记住我</label>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block">进入</button>
+    </form>
+</div>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="dist/js/soho.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>客服工作台</title>
+    <link rel="stylesheet" href="/static/common/dist/css/soho.min.css">
+</head>
+<style>
+    .hidden {
+        display: none !important;
+    }
+    .show {
+        display: block !important;
+    }
+</style>
+<body>
+
+<!-- page loading -->
+<div class="page-loading"></div>
+<!-- ./ page loading -->
+<!-- layout -->
+<div class="layout">
+
+    <!-- navigation -->
+    <nav class="navigation">
+        <div class="nav-group">
+            <ul>
+                <li>
+                    <a class="logo" href="#">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             width="33.004px" height="33.003px" viewBox="0 0 33.004 33.003" style="enable-background:new 0 0 33.004 33.003;"
+                             xml:space="preserve">
+                            <g>
+                                <path d="M4.393,4.788c-5.857,5.857-5.858,15.354,0,21.213c4.875,4.875,12.271,5.688,17.994,2.447l10.617,4.161l-4.857-9.998
+                                    c3.133-5.697,2.289-12.996-2.539-17.824C19.748-1.072,10.25-1.07,4.393,4.788z M25.317,22.149l0.261,0.512l1.092,2.142l0.006,0.01
+                                    l1.717,3.536l-3.748-1.47l-0.037-0.015l-2.352-0.883l-0.582-0.219c-4.773,3.076-11.221,2.526-15.394-1.646
+                                    C1.469,19.305,1.469,11.481,6.277,6.672c4.81-4.809,12.634-4.809,17.443,0.001C27.919,10.872,28.451,17.368,25.317,22.149z"/>
+                                <g>
+                                    <circle cx="9.835" cy="16.043" r="1.833"/>
+                                    <circle cx="15.502" cy="16.043" r="1.833"/>
+                                    <circle cx="21.168" cy="16.043" r="1.833"/>
+                                </g>
+                            </g>
+                            <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a data-navigation-target="chats" class="queue active" href="#" title="当前会话">
+                        <i class="ti-comment-alt"></i>
+                    </a>
+                </li>
+                <li id="aaa">
+                    <a data-navigation-target="friends" href="#" class="notifiy_badge" title="历史会话">
+                        <i class="ti-user"></i>
+                    </a>
+                </li>
+                <li data-navigation-target="favorites" class="brackets">
+                </li>
+                <li>
+                    <a href="{:url('login/logout')}">
+                        <i class="ti-power-off" title="退出"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- ./ navigation -->
+
+    <!-- content -->
+    <div class="content">
+
+        <!-- sidebar group -->
+        <div class="sidebar-group">
+
+            <!-- 当前会话 -->
+            <div id="chats" class="sidebar active">
+                <header class="facing-title">
+                    <span>客服名：{$kefu_name}</span>
+                    <p class="status">离线</p>
+                </header>
+                <form >
+                    <span>游客测试地址:{$url}</span>
+                </form>
+                <div class="sidebar-body">
+                    <ul class="list-group list-group-flush" id="facing">
+
+                    </ul>
+                </div>
+            </div>
+            <!-- ./ 当前会话-->
+
+            <!-- 历史会话 -->
+            <div id="friends" class="sidebar">
+                <header>
+                    <span>历史会话</span>
+                </header>
+                <div class="sidebar-body">
+                    <ul class="list-group list-group-flush" id ='history'>
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+            <!-- ./ 历史会话 -->
+        </div>
+        <!-- ./ sidebar group -->
+
+        <!-- chat -->
+        <div class="chat">
+            <div class="chat-header">
+                <div class="chat-header-user">
+                    <figure class="avatar avatar-lg" id="visitor_avatar">
+                        <!--<img src="/static/common/dist/media/img/man_avatar3.jpg" class="rounded-circle">-->
+                    </figure>
+                    <div id ='visitor_info'>
+                        <h5></h5>
+                        <small class="text-muted">
+                            <i></i>
+                        </small>
+                    </div>
+                </div>
+                <div class="chat-header-action">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-secondary" data-toggle="dropdown">
+                                <i class="ti-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">关闭</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- .消息 -->
+            <div class="chat-body">
+
+                <div class="messages" >
+
+                </div>
+                <!--<div class="messages hidden" >-->
+
+                <!--</div>-->
+            </div>
+            <!-- .消息end -->
+            <div class="chat-footer">
+                <form action="">
+                    <input type="text" class="form-control" placeholder="请输入内容"
+                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="form-buttons">
+                        <button class="btn btn-primary btn-floating" type="submit">
+                            <i class="fa fa-send"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- ./ chat -->
+    </div>
+    <!-- ./ content -->
+
+</div>
+
+<script>
+    var code ='{$kefu_code}';
+    var port= '{$port}';
+</script>
+<script src="/static/demo/js/jquery.min.js"></script>
+<script src="/static/common/vendor/popper.min.js"></script>
+<script src="/static/common/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/static/common/vendor/jquery.nicescroll.min.js"></script>
+<script src="/static/common/dist/js/soho.min.js"></script>
+<script src="/static/common/dist/js/examples.js"></script>
+</body>
+</html>

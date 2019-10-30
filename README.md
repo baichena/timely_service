@@ -2,36 +2,26 @@
 
 #### 介绍
 基于TP5.1+swoole写的客服系统，目前开放demo测试版 ，更多功能之后会慢慢完善
+如果喜欢请给打星
 
 #### 软件架构
-软件架构说明
+TP5.1+swoole
 
+测试地址：
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  下载本代码
+2.  需要php7.1版本以上
+3.  需要swoole4.0版本以上
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.   导入sql文件，修改config/databases.php,并搭建好nginx站点
+2.   在项目根目录运行php think chat start   支持 start | start -d |restart |stop
+3    然后浏览器访问 www.xxxx.com/index/kefu/index
+#### Timely交流群
 
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+QQ:850286851
 
 
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

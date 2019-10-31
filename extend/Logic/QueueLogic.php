@@ -29,14 +29,19 @@ class QueueLogic
         }
     }
 
-    public static function findFuwuNumByKefuCode($kefu_code)
-    {
-        return Db::name('visitor_queue')->where('reception_status', 1)->count();
-    }
-
     public static function updateQueueByCusomerID($visitor_id, $update)
     {
         return Db::name('visitor_queue')->where('visitor_id', $visitor_id)->update($update);
+    }
+
+    public  static  function  getQueueing($kefu_code){
+        return Db::name('visitor_queue')->where('kefu_code',$kefu_code)->where('reception_status', 1)->select();
+    }
+    public  static  function  updateQueueingkefuClientid($kefu_code,$fd){
+        return Db::name('visitor_queue')->where('kefu_code',$kefu_code)->where('reception_status', 1)->update(['kefu_client_id'=>$fd]);
+    }
+    public  static  function  setReceptionStatus($visitor_id,$status,$fd=0){
+        return Db::name('visitor_queue')->where('visitor_id',$visitor_id)->update(['client_id'=>$fd,'reception_status'=>$status]);
     }
 
 }

@@ -52,7 +52,7 @@
                         <i class="ti-comment-alt"></i>
                     </a>
                 </li>
-                <li id="aaa">
+                <li >
                     <a data-navigation-target="friends" href="#" class="notifiy_badge" title="历史会话">
                         <i class="ti-user"></i>
                     </a>
@@ -60,7 +60,7 @@
                 <li data-navigation-target="favorites" class="brackets">
                 </li>
                 <li>
-                    <a href="{:url('login/logout')}">
+                    <a href="{:url('login/logout')}" class="logout">
                         <i class="ti-power-off" title="退出"></i>
                     </a>
                 </li>
@@ -170,6 +170,8 @@
 <script>
     var code ='{$kefu_code}';
     var port= '{$port}';
+    var name ="{$kefu_name}";
+    var avatar="{$avatar}";
 </script>
 <script src="/static/demo/js/jquery.min.js"></script>
 <script src="/static/common/vendor/popper.min.js"></script>

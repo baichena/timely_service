@@ -37,6 +37,7 @@ class Login extends Controller
             }
             session('kefu_name', $kefu_info['kefu_name']);
             session('kefu_code', $kefu_info['kefu_code']);
+            session('kefu_avatar', $kefu_info['kefu_avatar']);
         } else {
             //同一个ip 限制注册3个账号
             $num = Cache::get(request()->ip());
@@ -60,6 +61,7 @@ class Login extends Controller
             Cache::inc(request()->ip());
             session('kefu_name', $kefu_data['kefu_name']);
             session('kefu_code', $kefu_data['kefu_code']);
+            session('kefu_avatar', $kefu_data['kefu_avatar']);
 
         }
 
@@ -68,6 +70,7 @@ class Login extends Controller
     public  function  logout(){
         session('kefu_name',null);
         session('kefu_code', null);
+        session('kefu_avatar', null);
         return  $this->redirect('login/login');
     }
 }

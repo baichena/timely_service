@@ -38,5 +38,10 @@ class Visitor
         return  $info;
 
     }
+    public  static  function  setOnline($visitor_id,$status,$fd=0){
+        $update['online_status'] =$status;
+        $update['client_id'] =$fd;
+        return  Db::name('visitor')->where('visitor_id', $visitor_id)->update($update);
+    }
 
 }

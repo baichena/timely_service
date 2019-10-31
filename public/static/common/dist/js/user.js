@@ -95,7 +95,7 @@ $(function () {
                                 }
                             } else if (item.log == 'kefu') {
                                 if (item.send_status == 1) {
-                                    user.Message.add(item);
+                                    user.Message.add(item,'',0);
                                 }
                             }
                         });
@@ -136,6 +136,7 @@ $(function () {
 
     function onMessage(evt) {
         var obj = JSON.parse(evt.data);
+        console.log(obj);
         //上线成功 连接客服
         if (obj.cmd == 'online') {
             var msg = {};
@@ -156,16 +157,17 @@ $(function () {
                 alert('客服已下线')
             }
 
-        } else if (obj.cmd = "message") {
+        } else if (obj.cmd == "message") {
             if (obj.code == 200) {
                 user.Message.add(obj.data, 'outgoing-message', 0);
             } else if (obj.code == 201) {
                 user.Message.add(obj.data, 'outgoing-message', 1);
             }
-
             return true;
         } else if (obj.cmd = "chatMessage") {
-            //接收客服发送toMe的消息
+            if (obj.code == 200) {
+                user.Message.add(obj.data, '', 0);
+            }
         }
 
     }

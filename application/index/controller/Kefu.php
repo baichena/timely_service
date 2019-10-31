@@ -21,6 +21,7 @@ class Kefu extends  Base
            $this->assign('url',request()->domain().'/index/index/user?kefu_code='.session('kefu_code'));
             $this->assign('kefu_name',session('kefu_name'));
             $this->assign('kefu_code',session('kefu_code'));
+            $this->assign('avatar',session('kefu_avatar'));
             return $this->fetch();
         }
         public function  getQueue(){

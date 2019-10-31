@@ -33,5 +33,19 @@ class VisitorService
         return  Db::name('visitor_service_log')->insertGetId($data);
     }
 
+    public  static  function  setEndTimeEndId($visitor_id){
+        //获取最新的记录
+        $info= Db::name('visitor_service_log')->where('visitor_id',$visitor_id)->order('start_date desc')->find();
+        if($info){
+            return  Db::name('visitor_service_log')->where('vsid',$info['vsid'])->update([
+                'end_date'=>date('Y-m-d H:i:s'),
+                'connect_stauts'=>2,
+            ]);
+        }else{
+            return  true;
+        }
+
+    }
+
 
 }

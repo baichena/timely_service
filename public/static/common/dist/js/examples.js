@@ -1,4 +1,7 @@
 var kefu_code = 'KF_' + code;
+var kefu_name= name;
+var kefu_avatar =avatar;
+
 $(function () {
     var kefu = {
         Message: {
@@ -85,6 +88,11 @@ $(function () {
                 }
 
             },
+            setOnlineL:function(){
+                $('#visitor_avatar').html(' ');
+                $('#visitor_info h5').text(' ');
+                $('#visitor_info i').text(' ');
+            },
             getfirstChatLog: function () {
                 var show = $('.layout .content .chat .chat-body  .show');
                 if (show.length > 0) {
@@ -132,6 +140,18 @@ $(function () {
                         }
                     }
                 });
+            },
+            getChat: function (message,vid,vname,vavatar) {
+                var data = {
+                    from_id: kefu_code,
+                    from_name: kefu_name,
+                    from_avatar: kefu_avatar,
+                    to_id: vid,
+                    to_name: vname,
+                    to_avatar: vavatar,
+                    message: message
+                };
+                return data;
             }
         }
     };
@@ -166,14 +186,37 @@ $(function () {
 
     function onMessage(evt) {
         var obj = JSON.parse(evt.data);
+        console.log(obj);
         if (obj.cmd == "chatMessage") {
-            console.log(obj.data);
-            //  kefu.Message.addLog(obj.data,'',0);
             kefu.Message.toMeLog(obj.data);
         } else if (obj.cmd == "kefu_online") {
             $('#chats').find('.status').text('在线');
             //获取当前会话
             kefu.Message.getQueue()
+        }else  if(obj.cmd == "userUpper"){
+          //用户上线
+            kefu.Message.getQueue();
+        }else  if(obj.cmd == "diffClose"){
+            $('.layout .content .sidebar-group #chats  #facing li').each(function () {
+                  if($(this).attr('data-id') == obj.data.visitor_id){
+                      var nextli=$(this).next();
+                      $(this).remove();
+                      if(nextli.length>0){
+                          nextli.addClass('open-chat');
+                          nextli.find('figure').addClass('avatar-state-success');
+                          kefu.Message.getChatLog(nextli.attr('data-id'),kefu_code)
+                      }else {
+                          $('.layout .content .chat .chat-body  .messages').html('');
+                          kefu.Message.setOnlineL();
+                      }
+                  }
+            });
+        }else  if(obj.cmd == "message"){
+            if (obj.code == 200) {
+                kefu.Message.addLog(obj.data, 'outgoing-message', 0);
+            } else if (obj.code == 201) {
+                kefu.Message.addLog(obj.data, 'outgoing-message', 1);
+            }
         }
 
     }
@@ -190,7 +233,8 @@ $(function () {
         if (!content) {
             return false;
         }
-        msg.cmd = 'message';
+        console.log($('.layout .content .sidebar-group #chats  #facing .open-chat'));
+
         msg.data = content;
         console.log(msg)
         websocket.send(JSON.stringify(msg));
@@ -204,10 +248,19 @@ $(function () {
         var input = $(this).find('input[type=text]');
         var message = input.val();
         message = $.trim(message);
+        var li=$('.layout .content .sidebar-group #chats  #facing .open-chat');
+        if(li.length ==0 ){
+            input.focus();
+            return false;
+        }
+        var vid=li.attr('data-id');
+        var vname=li.find('h5').text();
+        var vavatar =li.find('img').attr('src');
+
         if (message) {
             var msg = {}
             msg.cmd = 'message';
-            msg.data = kefu.Message.getChat(message);
+            msg.data = kefu.Message.getChat(message,vid,vname,vavatar);
             websocket.send(JSON.stringify(msg));
 
             input.val('');
@@ -218,18 +271,18 @@ $(function () {
 
     $(document).on('click', '.layout .navigation .nav-group li ', function (e) {
         e.preventDefault();
-
-             if($(this).find('a').hasClass('queue')){
+              var obj= $(this).find('a');
+             if(obj.hasClass('queue')){
+                 $('.layout .content .chat .chat-body  .messages').html('');
                   kefu.Message.getQueue()
-             }else if($(this).find('a').hasClass('notifiy_badge')){
+             }else if(obj.hasClass('notifiy_badge')){
+                 $('.layout .content .chat .chat-body  .messages').html('');
                  kefu.Message.getQueue(2)
+             }else  if(obj.hasClass('logout')){
+                window.location.href="/index/login/logout";
              }
              return true;
     });
-
-
-
-
 
     $(document).on('click', '.layout .content .sidebar-group .sidebar .list-group-item', function () {
         if (jQuery.browser.mobile) {
@@ -272,6 +325,29 @@ $(function () {
 
         }
     });
+    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+    var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+    var isIE11 = userAgent.indexOf("rv:11.0") > -1; //判断是否是IE11浏览器
+    var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+    if(!isIE && !isEdge && !isIE11) {//兼容chrome和firefox
+        var _beforeUnload_time = 0, _gap_time = 0;
+        var is_fireFox = navigator.userAgent.indexOf("Firefox") > -1;//是否是火狐浏览器
+        window.onunload = function () {
+            _gap_time = new Date().getTime() - _beforeUnload_time;
+            if (_gap_time <= 5) {
+                //执行浏览器关闭你所要做的事情比如登出
+                $.post('logout.do');
+            } else {//浏览器刷新
+            }
+        }
+        window.onbeforeunload = function () {
+            _beforeUnload_time = new Date().getTime();
+            if (is_fireFox) {//火狐关闭执行
+                //执行浏览器关闭你所要做的事情比如登出
+                $.post('logout.do');
+            }
+        };
 
-
-});
+    }
+    });

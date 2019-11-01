@@ -44,7 +44,15 @@ $(function () {
                                 var facing_info = ' <li class="list-group-item ' + open + '" data-id="' + item.visitor_id + '">';
                                 facing_info += '<figure class="avatar ' + avatar_state_success + '">';
                                 facing_info += '<img src="' + item.visitor_avatar + '" class="rounded-circle"></figure>';
-                                facing_info += ' <div class="users-list-body"> <h5>' + item.visitor_name + '</h5></div>';
+                                facing_info += ' <div class="users-list-body"> <h5>' + item.visitor_name + '</h5>';
+                                if(status == 1){
+                                    facing_info+='<div class="users-list-action action-toggle">';
+                                    facing_info+='<div class="dropdown"><a data-toggle="dropdown" href="#"> <i class="ti-more"></i></a>';
+                                    facing_info+='<div class="dropdown-menu dropdown-menu-right">';
+                                    facing_info+='<a href="#" class="dropdown-item">关闭</a>';
+                                    facing_info+='</div></div></div>';
+                                }
+                                facing_info += '</div>'
                                 $('#facing').append(facing_info);
                                 //新建聊天框
                                 if (key == 0) {
@@ -324,6 +332,27 @@ $(function () {
             kefu.Message.getChatLog(vid, kefu_code);
 
         }
+
+    });
+    $(document).on('click', '.layout .content .chat .dropdown-item', function (e) {
+        e.preventDefault();
+        console.log(111);
+        // if ($(this).hasClass('open-chat') == true) {
+        //     return true
+        // } else {
+        //     $(this).addClass('open-chat');
+        //     $(this).find('.users-list-body').find('.users-list-action').remove();
+        //     $(this).find('figure').addClass('avatar-state-success');
+        //     $('.layout .content .sidebar-group #friends  #history li').not(this).removeClass('open-chat');
+        //     $('.layout .content .sidebar-group #friends  #history li figure').not($(this).find('figure')).removeClass('avatar-state-success');
+        //     //显示当前用户的聊天记录
+        //     kefu.Message.setOnline($(this).find('h5').text(), $(this).find('img').attr('src'));
+        //     var vid = $(this).attr('data-id');
+        //     var obj = $('.chat-body').find('.' + vid);
+        //     kefu.Message.getChatLog(vid, kefu_code);
+        //
+        // }
+
     });
     var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
     var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
@@ -350,4 +379,4 @@ $(function () {
         };
 
     }
-    });
+});

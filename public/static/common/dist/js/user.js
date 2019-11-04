@@ -136,7 +136,6 @@ $(function () {
 
     function onMessage(evt) {
         var obj = JSON.parse(evt.data);
-        console.log(obj);
         //上线成功 连接客服
         if (obj.cmd == 'online') {
             var msg = {};

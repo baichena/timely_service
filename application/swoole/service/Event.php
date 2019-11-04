@@ -258,7 +258,11 @@ class Event
     {
 
     }
-
+    /**
+     * 断开连接
+     * @param $fd  客户端标识
+     * @param $data  请求数据
+     */
     public static function disconnect($fd, $server)
     {
         $uid = self::$online[$fd];

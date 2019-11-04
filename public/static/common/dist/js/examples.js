@@ -194,7 +194,6 @@ $(function () {
 
     function onMessage(evt) {
         var obj = JSON.parse(evt.data);
-        console.log(obj);
         if (obj.cmd == "chatMessage") {
             kefu.Message.toMeLog(obj.data);
         } else if (obj.cmd == "kefu_online") {
@@ -241,10 +240,7 @@ $(function () {
         if (!content) {
             return false;
         }
-        console.log($('.layout .content .sidebar-group #chats  #facing .open-chat'));
-
         msg.data = content;
-        console.log(msg)
         websocket.send(JSON.stringify(msg));
         $('#msg').val("");
         return true;
@@ -334,26 +330,10 @@ $(function () {
         }
 
     });
-    $(document).on('click', '.layout .content .chat .dropdown-item', function (e) {
-        e.preventDefault();
-        console.log(111);
-        // if ($(this).hasClass('open-chat') == true) {
-        //     return true
-        // } else {
-        //     $(this).addClass('open-chat');
-        //     $(this).find('.users-list-body').find('.users-list-action').remove();
-        //     $(this).find('figure').addClass('avatar-state-success');
-        //     $('.layout .content .sidebar-group #friends  #history li').not(this).removeClass('open-chat');
-        //     $('.layout .content .sidebar-group #friends  #history li figure').not($(this).find('figure')).removeClass('avatar-state-success');
-        //     //显示当前用户的聊天记录
-        //     kefu.Message.setOnline($(this).find('h5').text(), $(this).find('img').attr('src'));
-        //     var vid = $(this).attr('data-id');
-        //     var obj = $('.chat-body').find('.' + vid);
-        //     kefu.Message.getChatLog(vid, kefu_code);
-        //
-        // }
-
-    });
+    // $(document).on('click', '.layout .content .chat .dropdown-item', function (e) {
+    //     e.preventDefault();
+    //
+    // });
     var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
     var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
     var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器

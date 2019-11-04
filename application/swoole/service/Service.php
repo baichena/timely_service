@@ -63,9 +63,27 @@ class Service
 
     public function onClose($server, $fd)
     {
-        Log::record('WebSocket关闭请求开始，请求信息[' . json_encode($server) . ']');
-        $resut = Event::disconnect($fd,$server);
-        echo "client {$fd} closed\n";
+        try {
+            Log::record('WebSocket关闭请求开始，请求信息[' . json_encode($server) . ']');
+            $resut = Event::disconnect($fd,$server);
+            echo "client {$fd} closed\n";
+        } catch (BaseException $e) {
+            Log::record('WebSocket请求异常,异常信息' . $e->getMessage());
+            Log::record('WebSocket请求异常,异常信息' . $e->getFile().$e->getLine());
+
+        } catch (\Error $er) {
+            Log::record('WebSocket请求异常,异常信息' . $er->getMessage());
+            Log::record('WebSocket请求异常,异常信息' . $er->getFile().$er->getLine());
+
+        } catch (\Exception $era) {
+            Log::record('WebSocket请求异常,异常信息' . $era->getMessage());
+            Log::record('WebSocket请求异常,异常信息' . $era->getFile().$era->getLine());
+
+        } catch (\ErrorException $ere) {
+            Log::record('WebSocket请求异常,异常信息' . $ere->getMessage());
+            Log::record('WebSocket请求异常,异常信息' . $ere->getFile().$ere->getLine());
+        }
+
     }
 
 

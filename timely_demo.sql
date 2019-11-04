@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-10-30 18:34:05
+Date: 2019-11-04 11:50:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,15 +34,7 @@ CREATE TABLE `chat_log` (
   PRIMARY KEY (`log_id`),
   KEY `from_id` (`from_id`) USING BTREE,
   KEY `to_id` (`to_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of chat_log
--- ----------------------------
-INSERT INTO `chat_log` VALUES ('120', '225db94641ddafe', '游客225db94641ddafe', '/static/common/images/visitor.jpg', 'KF_kefu5db8eafbe332f', '尔耳', '/static/common/images/kefu.jpg', '尔特人', '1', '1', '2019-10-30 18:28:48');
-INSERT INTO `chat_log` VALUES ('121', '225db946744b2ca', '游客225db946744b2ca', '/static/common/images/visitor.jpg', 'KF_kefu5db8eafbe332f', '尔耳', '/static/common/images/kefu.jpg', '尔特人', '1', '1', '2019-10-30 18:28:53');
-INSERT INTO `chat_log` VALUES ('122', '225db946744b2ca', '游客225db946744b2ca', '/static/common/images/visitor.jpg', 'KF_kefu5db8eafbe332f', '尔耳', '/static/common/images/kefu.jpg', '1212', '1', '1', '2019-10-30 18:29:23');
-INSERT INTO `chat_log` VALUES ('123', '225db94641ddafe', '游客225db94641ddafe', '/static/common/images/visitor.jpg', 'KF_kefu5db8eafbe332f', '尔耳', '/static/common/images/kefu.jpg', '是的发生的', '1', '1', '2019-10-30 18:29:30');
+) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for kefu_info
@@ -60,13 +52,7 @@ CREATE TABLE `kefu_info` (
   `update_time` datetime NOT NULL COMMENT '更新时间',
   `client_id` varchar(32) DEFAULT NULL COMMENT '客服登录标示',
   PRIMARY KEY (`kefu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of kefu_info
--- ----------------------------
-INSERT INTO `kefu_info` VALUES ('21', 'kefu5db8128b0553e', '客服啊', '/static/common/images/kefu.jpg', 'e10adc3949ba59abbe56e057f20f883e', '1', '0', '2019-10-29 18:20:59', '2019-10-29 18:20:59', '');
-INSERT INTO `kefu_info` VALUES ('22', 'kefu5db8eafbe332f', '尔耳', '/static/common/images/kefu.jpg', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', '2019-10-30 09:44:27', '2019-10-30 09:44:27', '56');
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for visitor
@@ -84,13 +70,7 @@ CREATE TABLE `visitor` (
   PRIMARY KEY (`vid`),
   KEY `visiter` (`visitor_id`) USING BTREE,
   KEY `time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of visitor
--- ----------------------------
-INSERT INTO `visitor` VALUES ('192', '225db94641ddafe', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '50', '1', '2019-10-30 18:28:34');
-INSERT INTO `visitor` VALUES ('193', '225db946744b2ca', '游客225db946744b2ca', '/static/common/images/visitor.jpg', '127.0.0.1', '53', '1', '2019-10-30 18:28:40');
+) ENGINE=InnoDB AUTO_INCREMENT=196 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for visitor_queue
@@ -111,13 +91,7 @@ CREATE TABLE `visitor_queue` (
   UNIQUE KEY `id` (`visitor_id`) USING BTREE,
   KEY `visiter` (`visitor_id`) USING BTREE,
   KEY `time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of visitor_queue
--- ----------------------------
-INSERT INTO `visitor_queue` VALUES ('8', '225db94641ddafe', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '50', '2019-10-30 18:28:34', '1', 'kefu5db8eafbe332f', '49');
-INSERT INTO `visitor_queue` VALUES ('9', '225db946744b2ca', '游客225db946744b2ca', '/static/common/images/visitor.jpg', '127.0.0.1', '53', '2019-10-30 18:28:40', '1', 'kefu5db8eafbe332f', '52');
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for visitor_service_log
@@ -138,26 +112,4 @@ CREATE TABLE `visitor_service_log` (
   PRIMARY KEY (`vsid`),
   KEY `user_id,client_id` (`visitor_id`,`client_id`) USING BTREE,
   KEY `kf_id,start_time,end_time` (`kefu_code`,`start_date`,`end_date`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3089 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of visitor_service_log
--- ----------------------------
-INSERT INTO `visitor_service_log` VALUES ('3071', '225db94641ddafe', '2', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 16:13:54', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3072', '225db946744b2ca', '5', '游客225db946744b2ca', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 16:14:44', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3073', '225db946744b2ca', '6', '游客225db946744b2ca', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 16:14:50', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3074', '225db94641ddafe', '49', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 16:35:18', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3075', '225db94641ddafe', '109', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:40:40', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3076', '225db94641ddafe', '2', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:42:07', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3077', '225db94641ddafe', '4', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:42:10', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3078', '225db94641ddafe', '6', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:44:51', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3079', '225db94641ddafe', '8', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:46:21', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3080', '225db94641ddafe', '10', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:46:49', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3081', '225db94641ddafe', '12', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:56:04', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3082', '225db946744b2ca', '13', '游客225db946744b2ca', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 17:56:09', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3083', '225db94641ddafe', '19', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 18:02:00', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3084', '225db94641ddafe', '28', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 18:06:28', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3085', '225db94641ddafe', '31', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 18:07:27', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3086', '225db94641ddafe', '41', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 18:18:51', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3087', '225db94641ddafe', '50', '游客225db94641ddafe', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 18:28:34', null, '1');
-INSERT INTO `visitor_service_log` VALUES ('3088', '225db946744b2ca', '53', '游客225db946744b2ca', '/static/common/images/visitor.jpg', '127.0.0.1', '22', 'kefu5db8eafbe332f', '2019-10-30 18:28:40', null, '1');
+) ENGINE=InnoDB AUTO_INCREMENT=3268 DEFAULT CHARSET=utf8;

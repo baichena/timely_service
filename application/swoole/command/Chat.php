@@ -40,24 +40,6 @@ class Chat extends Command
             $output->writeln("<error>Invalid argument action:{$action}, Expected start|stop|restart|reload .</error>");
             return false;
         }
-        //timely TIMELY
-        $brand = <<<EOL
-       
-       ttttttttttttttttt                               
-       ttttttttttttttttt                   
-       ttttttttttttttttt                                                                                         
-                                 iiiii                                                                  llll         yyyy    yyyy
-             ttttt               iiiii             mmmmmm     mmmmmm               eeee                 llll          yyy    yyy 
-             ttttt                                mmmmmmmmm  mmmmmmmmm         eeee    eeee             llll           yy    yy
-             ttttt               iiiii          mmmm      mmmm     mmmm      eeee         eeee          llll            yyyyyy
-             ttttt               iiiii          mmmm      mmmm     mmmm      eeeeeeeeeeeeeeeee          llll             yyyy 
-             ttttt               iiiii          mmmm      mmmm     mmmm      ee                         llll             yyy
-             ttttt               iiiii          mmmm      mmmm     mmmm      ee              ee         llll            yyy
-             ttttt               iiiii          mmmm      mmmm     mmmm       eeeeeeeeeeeeeeee          llll           yyy
-             ttttt               iiiii          mmmm      mmmm     mmmm       eeeeeeeeeeeeeee           llll          yy
-EOL;
-
-        $output->writeln($brand . PHP_EOL);
         $this->init();
         $this->$action();
 
